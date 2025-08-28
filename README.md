@@ -3,7 +3,7 @@
 Interface web do Projeto 02 – Generation Brasil, consumindo a API REST construída em NestJS + TypeORM.
 Foco em SPA (Single Page Application), componentes reutilizáveis e integração com o backend via HTTP.
 
-🔗 Backend: repositório separado — TODO: colocar link aqui
+🔗 Backend: repositório separado: [BlogPessoal](https://github.com/MaeliPalharini/blogpessoal)
 
 ## 🚀 Tecnologias
 
