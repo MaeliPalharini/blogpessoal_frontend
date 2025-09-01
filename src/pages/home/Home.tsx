@@ -1,19 +1,16 @@
-// src/pages/home/Home.tsx
 import minhaImagem from '../../assets/back1.png';
 
 function Home() {
     return (
         <>
-            {/* Se quiser manter essa cor aqui, ok; senão pode tirar e colocar no App */}
             <div className="bg-[#256777] flex justify-center">
-                {/* Altura mínima grande e grid responsivo */}
-                <div className="container mx-auto px-4
+                <div
+                    className="container mx-auto px-4
                         grid grid-cols-1 md:grid-cols-2 gap-8
                         text-white
                         min-h-[70vh] md:min-h-[75vh] lg:min-h-[80vh]
-                        items-center py-8">
-
-                    {/* Coluna esquerda */}
+                        items-center py-8"
+                >
                     <div className="flex flex-col gap-4 md:items-start items-center">
                         <h2 className="text-5xl font-bold text-center md:text-left">
                             Seja Bem Vinde!
@@ -32,16 +29,23 @@ function Home() {
                         </div>
                     </div>
 
-                    {/* Coluna direita — imagem */}
-                    <div className="flex md:justify-end justify-center">
+                    <div className="flex md:justify-end">
                         <img
                             src={minhaImagem}
                             alt="Imagem Página Home"
-                            className="w-[560px] md:w-[680px] lg:w-[900px] h-auto max-w-none"
+                            className="w-full max-w-[1300px] h-140 object-cover rounded-lg"
                         />
                     </div>
+
                 </div>
             </div>
+            <section className="w-full bg-white py-12 md:py-16">
+                <div className="container mx-auto px-4">
+                    <div className="text-center text-gray-600">
+                        <span>Em breve: Listar Postagens</span>
+                    </div>
+                </div>
+            </section>
         </>
     );
 }
