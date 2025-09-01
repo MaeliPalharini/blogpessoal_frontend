@@ -5,21 +5,39 @@ Foco em SPA (Single Page Application), componentes reutilizáveis e integração
 
 🔗 Backend: repositório separado: [BlogPessoal](https://github.com/MaeliPalharini/blogpessoal)
 
-## 🚀 Tecnologias
+---
 
-    - React 18 + TypeScript
-    
-    - Vite (dev server e build)
+## ✨ Funcionalidades
 
-    - ESLint (padrões de código)
+- Login e Cadastro de usuário
+- Estado global de auth com **AuthContext** (login/logout, token e redirecionamentos)
+- Feedback de carregamento com **react-spinners/ClipLoader**
+- Formulários controlados com validações básicas
+- Navbar com ação de **Sair**
+- Integração com API (Axios):
+    - `POST /usuarios` (cadastro) — **não envia `id` no payload**
+    - `POST /usuarios/logar` (login)
 
-    - Tailwind CSS
+---
+
+## 🧰 Tech stack
+
+- React 18 + TypeScript
+- Vite (dev/build/preview)
+- React Router
+- Axios
+- Tailwind CSS
+- ESLint + @typescript-eslint
+
+---
 
 ## 📦 Pré-requisitos
 
 Node.js ≥ 18
 
 npm ou yarn ou pnpm
+
+---
 
 ## 🔐 Integração com o backend
 
@@ -31,6 +49,8 @@ Requisições autenticadas enviam Authorization: Bearer <token>.
 
 Em erro 401, redirecionar para login.
 
+---
+
 ## Entidades principais
 
     👤 Usuário
@@ -39,8 +59,12 @@ Em erro 401, redirecionar para login.
     
     🏷️ Tema
 
+---
+
 ## 🧑‍💻 Autoria
 Projeto desenvolvido por Maeli Palharini durante o bootcamp da Generation Brasil 💜
+
+---
 
 ## 📌 Licença
 Este projeto está sob a licença MIT — sinta-se livre para usar, aprender e contribuir!
