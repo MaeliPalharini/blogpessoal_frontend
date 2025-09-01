@@ -46,15 +46,15 @@ function Cadastro() {
         if (confirmarSenha === usuario.senha && usuario.senha.length >= 8) {
             setIsLoading(true);
             try {
-                //O back não aceita id no payload
-                const {id: _, ...usuarioSemId} = usuario
-                await cadastrarUsuario("/usuarios",usuarioSemId, setUsuario);
+                const { id: _id, ...usuarioSemId } = usuario; // não envia id
+                await cadastrarUsuario("/usuarios", usuarioSemId, setUsuario);
                 alert("Usuário cadastrado com sucesso!");
-            } catch (error) {
-                alert(error.response.data.message);
+            } catch (error: any) {
+                alert(error?.response?.data?.message ?? error?.message ?? "Erro ao cadastrar o usuário!");
             } finally {
                 setIsLoading(false);
             }
+
         } else {
             alert(
                 "Dados do usuário inconsistentes! Verifique as informações do cadastro."

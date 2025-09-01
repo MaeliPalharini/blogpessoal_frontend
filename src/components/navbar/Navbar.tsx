@@ -2,7 +2,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 
-// @ts-expect-error
 export default function Navbar() {
 
     const navigate = useNavigate();
