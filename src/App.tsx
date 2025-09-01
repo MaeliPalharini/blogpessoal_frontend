@@ -1,21 +1,23 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import './App.css'
-import Home from './pages/home/Home.tsx'
-import Navbar from "./components/navbar/Navbar.tsx";
-import Footer from "./components/footer/Footer.tsx";
-import Cadastro from "./cadastro/Cadastro.tsx";
-import Login from "./login/Login.tsx";
+import Navbar from './components/navbar/Navbar'
+import Footer from './components/footer/Footer'
+import Home from './pages/home/Home'
+import Cadastro from './cadastro/Cadastro'
+import Login from './login/Login'
 
-function App() {
+export default function App() {
     return (
         <BrowserRouter>
             <div className="min-h-screen flex flex-col">
                 <Navbar />
-                <main className="min-h-[80vh]">
+                <main className="flex-1">
                     <Routes>
-                        <Route path="/" element={<Login />} />
+                        <Route path="/" element={<Navigate to="/login" replace />} />
+                        <Route path="/login" element={<Login />} />
                         <Route path="/home" element={<Home />} />
                         <Route path="/cadastro" element={<Cadastro />} />
+                        <Route path="*" element={<Navigate to="/login" replace />} />
                     </Routes>
                 </main>
                 <Footer />
@@ -24,5 +26,4 @@ function App() {
     )
 }
 
-export default App
 
