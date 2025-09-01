@@ -13,7 +13,7 @@ Foco em SPA (Single Page Application), componentes reutilizáveis e integração
 
     - ESLint (padrões de código)
 
-    - Tailwind
+    - Tailwind CSS
 
 ## 📦 Pré-requisitos
 
@@ -33,7 +33,11 @@ Em erro 401, redirecionar para login.
 
 ## Entidades principais
 
-    usuario, tema, postagem.
+    👤 Usuário
+    
+    📝 Postagem
+    
+    🏷️ Tema
 
 ## 🧑‍💻 Autoria
 Projeto desenvolvido por Maeli Palharini durante o bootcamp da Generation Brasil 💜
