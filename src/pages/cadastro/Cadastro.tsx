@@ -1,9 +1,9 @@
-import cadastroImage from "../assets/cadastro.png";
+import cadastroImage from "../../assets/cadastro.png";
 import { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
-import type Usuario from "../models/Usuario";
-import { cadastrarUsuario } from "../services/Service";
+import type Usuario from "../../models/Usuario.ts";
+import { cadastrarUsuario } from "../../services/Service.ts";
 
 function Cadastro() {
     const navigate = useNavigate();
@@ -46,10 +46,12 @@ function Cadastro() {
         if (confirmarSenha === usuario.senha && usuario.senha.length >= 8) {
             setIsLoading(true);
             try {
-                await cadastrarUsuario("/usuarios/cadastrar", usuario, setUsuario);
+                //O back não aceita id no payload
+                const {id: _, ...usuarioSemId} = usuario
+                await cadastrarUsuario("/usuarios",usuarioSemId, setUsuario);
                 alert("Usuário cadastrado com sucesso!");
             } catch (error) {
-                alert("Erro ao cadastrar o usuário!");
+                alert(error.response.data.message);
             } finally {
                 setIsLoading(false);
             }
@@ -65,7 +67,6 @@ function Cadastro() {
     return (
         <>
             <div className="grid grid-cols-1 lg:grid-cols-2 h-screen place-items-center font-bold">
-                {/* Imagem lateral */}
                 <div
                     className="lg:block hidden bg-no-repeat w-full min-h-screen bg-cover bg-center"
                     style={{
@@ -75,7 +76,6 @@ function Cadastro() {
                     }}
                 />
 
-                {/* Formulário */}
                 <form
                     className="flex justify-center items-center flex-col w-2/3 gap-3"
                     onSubmit={cadastrarNovoUsuario}
@@ -90,12 +90,11 @@ function Cadastro() {
                             type="text"
                             id="nome"
                             name="nome"
-                            placeholder="Nome"
                             autoComplete="name"
                             required
                             value={usuario.nome}
-                            onChange={atualizarEstado}
-                            className="border-2 border-[#256777] rounded p-2 focus:outline-none focus:ring-2 focus:ring-[#F4B740]"
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+                            className="border-1 border-[#256777] rounded p-2 focus:outline-none focus:ring-2 focus:ring-[#F4B740]"
                         />
                     </div>
 
@@ -107,12 +106,11 @@ function Cadastro() {
                             type="text"
                             id="usuario"
                             name="usuario"
-                            placeholder="Usuário"
                             autoComplete="username"
                             required
                             value={usuario.usuario}
-                            onChange={atualizarEstado}
-                            className="border-2 border-[#256777] rounded p-2 focus:outline-none focus:ring-2 focus:ring-[#F4B740]"
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+                            className="border-1 border-[#256777] rounded p-2 focus:outline-none focus:ring-2 focus:ring-[#F4B740]"
                         />
                     </div>
 
@@ -124,10 +122,9 @@ function Cadastro() {
                             type="url"
                             id="foto"
                             name="foto"
-                            placeholder="URL da foto (opcional)"
                             value={usuario.foto}
-                            onChange={atualizarEstado}
-                            className="border-2 border-[#256777] rounded p-2 focus:outline-none focus:ring-2 focus:ring-[#F4B740]"
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+                            className="border-1 border-[#256777] rounded p-2 focus:outline-none focus:ring-2 focus:ring-[#F4B740]"
                         />
                     </div>
 
@@ -144,8 +141,8 @@ function Cadastro() {
                             minLength={8}
                             required
                             value={usuario.senha}
-                            onChange={atualizarEstado}
-                            className="border-2 border-[#256777] rounded p-2 focus:outline-none focus:ring-2 focus:ring-[#F4B740]"
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+                            className="border-1 border-[#256777] rounded p-2 focus:outline-none focus:ring-2 focus:ring-[#F4B740]"
                         />
                     </div>
 
@@ -157,13 +154,12 @@ function Cadastro() {
                             type="password"
                             id="confirmarSenha"
                             name="confirmarSenha"
-                            placeholder="Confirmar Senha"
                             autoComplete="new-password"
                             minLength={8}
                             required
                             value={confirmarSenha}
-                            onChange={handleConfirmarSenha}
-                            className="border-2 border-[#256777] rounded p-2 focus:outline-none focus:ring-2 focus:ring-[#F4B740]"
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => handleConfirmarSenha(e)}
+                            className="border-1 border-[#256777] rounded p-2 focus:outline-none focus:ring-2 focus:ring-[#F4B740]"
                         />
                     </div>
 
@@ -171,10 +167,7 @@ function Cadastro() {
                         <button
                             type="reset"
                             className="rounded text-white bg-red-500 hover:bg-red-700 w-1/2 py-2 transition"
-                            onClick={() => {
-                                setUsuario({ id: 0, nome: "", usuario: "", senha: "", foto: "" });
-                                setConfirmarSenha("");
-                            }}
+                            onClick={retornar}
                             disabled={isLoading}
                         >
                             Cancelar
@@ -187,7 +180,8 @@ function Cadastro() {
                         >
                             {isLoading ? (
                                 <>
-                                    <ClipLoader color="#ffffff" size={18} />
+                                    <ClipLoader
+                                        color="#ffffff" size={24} />
                                     Enviando...
                                 </>
                             ) : (
