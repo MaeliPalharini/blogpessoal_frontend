@@ -5,7 +5,6 @@ import { AuthContext } from "../../contexts/AuthContext";
 import type UsuarioLogin from "../../models/UsuarioLogin";
 import { ClipLoader } from "react-spinners";
 
-
 function Login() {
     const navigate = useNavigate();
     const { usuario, handleLogin, isLoading } = useContext(AuthContext);

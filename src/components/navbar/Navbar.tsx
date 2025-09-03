@@ -22,7 +22,7 @@ export default function Navbar() {
                 <div className="flex gap-8">
                     <Link to="/postagens" className="hover:underline">Postagens</Link>
                     <Link to="/temas" className="hover:underline">Temas</Link>
-                    <Link to="/cadastrar-tema" className="hover:underline">Cadastrar tema</Link>
+                    <Link to='/cadastrartema' className='hover:underline'>Cadastrar tema</Link>
                     <Link to="/perfil" className="hover:underline">Perfil</Link>
                     <button type="button" onClick={logout} className="hover:underline">Sair</button>
                 </div>
