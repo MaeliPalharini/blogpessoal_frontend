@@ -7,9 +7,7 @@ import { buscar } from "../../services/Service";
 import CardPostagem from "../cardpostagem/Cardpostagem.tsx";
 
 function ListaPostagens() {
-
-    const navigate = useNavigate();
-
+    useNavigate();
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
     const [postagens, setPostagens] = useState<Postagem[]>([])
@@ -17,12 +15,6 @@ function ListaPostagens() {
     const { usuario, handleLogout } = useContext(AuthContext)
     const token = usuario.token
 
-    useEffect(() => {
-        if (token === '') {
-            alert('Você precisa estar logado!')
-            navigate('/')
-        }
-    }, [token])
 
     useEffect(() => {
         buscarPostagens()
