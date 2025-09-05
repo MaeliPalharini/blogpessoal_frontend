@@ -1,35 +1,54 @@
-import {GithubLogoIcon, InstagramLogoIcon, LinkedinLogoIcon} from "@phosphor-icons/react";
+import { GithubLogoIcon, InstagramLogoIcon, LinkedinLogoIcon } from "@phosphor-icons/react";
+import { AuthContext } from "../../contexts/AuthContext.tsx";
+import { useContext } from "react";
 
-function Footer() {
-    const data = new Date().getFullYear();
+export default function Footer() {
+    const { usuario } = useContext(AuthContext);
+    if (!usuario?.token) return null;
+
+    const year = new Date().getFullYear();
 
     return (
-        <div className="flex justify-center bg-[#256777] text-white">
-            <div className="container flex flex-col items-center py-4">
-                <p className="text-xl font-bold">
-                    Blog Pessoal Maeli Palharini | Copyright: {data}
+        <footer className="w-full bg-[#256777] text-white">
+            <div className="max-w-6xl mx-auto px-4 py-6 flex flex-col items-center gap-3">
+                <p className="text-xl font-bold text-center">
+                    Blog Pessoal Maeli Palharini | Copyright: {year}
                 </p>
 
-                <p className="text-lg">Acesse nossas redes sociais</p>
+                <p className="text-center">Acesse nossas redes sociais</p>
 
-                <div className="flex gap-4">
-                    <a href="https://www.linkedin.com/in/maeli-palharini/" target="_blank" rel="noreferrer">
-                        <LinkedinLogoIcon size={48} weight="bold" />
+                <div className="flex gap-6">
+                    <a
+                        href="https://www.linkedin.com/in/maeli-palharini/"
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label="LinkedIn"
+                        className="hover:opacity-80 transition"
+                    >
+                        <LinkedinLogoIcon size={32} weight="fill" />
                     </a>
 
-                    <a href="https://www.instagram.com/meggtrindade/?hl=pt" target="_blank" rel="noreferrer">
-                        <InstagramLogoIcon size={48} weight="bold" />
+                    <a
+                        href="https://www.instagram.com/meggtrindade/?hl=pt"
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label="Instagram"
+                        className="hover:opacity-80 transition"
+                    >
+                        <InstagramLogoIcon size={32} weight="fill" />
                     </a>
 
-                    <a href="https://github.com/MaeliPalharini" target="_blank" rel="noreferrer">
-                        <GithubLogoIcon size={48} weight="bold" />
+                    <a
+                        href="https://github.com/MaeliPalharini"
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label="GitHub"
+                        className="hover:opacity-80 transition"
+                    >
+                        <GithubLogoIcon size={32} weight="fill" />
                     </a>
                 </div>
             </div>
-        </div>
+        </footer>
     );
 }
-
-export default Footer;
-
-

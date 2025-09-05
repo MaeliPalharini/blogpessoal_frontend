@@ -11,10 +11,9 @@ function ListaTemas() {
 
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [temas, setTemas] = useState<Tema[]>([]);
-
     const { usuario, handleLogout } = useContext(AuthContext);
     const token = usuario.token;
-    console.log(usuario);
+
     useEffect(() => {
         if (token === '') {
             alert('Você precisa estar logado!');
