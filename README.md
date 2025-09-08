@@ -14,10 +14,11 @@ Foco em SPA (Single Page Application), componentes reutilizáveis e integração
 - Feedback de carregamento com **react-spinners/ClipLoader**
 - Formulários controlados com validações básicas
 - Navbar com ação de **Sair**
-- Integração com API (Axios):
-    - `POST /usuarios` (cadastro) — **não envia `id` no payload**
-    - `POST /usuarios/logar` (login)
-
+- Integração com API (Axios)
+- CRUD de Postagens (criar, ler, atualizar, deletar)
+- CRUD de Temas (criar, ler, atualizar, deletar)
+- Associação de Postagens a Temas
+- Responsividade básica (mobile e desktop)
 ---
 
 ## 🧰 Tech stack
