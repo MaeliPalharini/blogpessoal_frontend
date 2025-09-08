@@ -14,6 +14,7 @@ import FormPostagem from "./postagem/formpostagem/FormPostagem.tsx";
 import DeletarPostagem from "./postagem/deletarpostagem/DeletarPostagem.tsx";
 import Perfil from "./perfil/Perfil.tsx";
 import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function App() {
     return (
