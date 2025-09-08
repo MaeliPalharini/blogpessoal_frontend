@@ -4,7 +4,7 @@ import { SyncLoader } from "react-spinners";
 import { AuthContext } from "../../contexts/AuthContext";
 import type Postagem from "../../models/Postagem";
 import { buscar } from "../../services/Service";
-import CardPostagem from "../cardpostagem/Cardpostagem";
+import CardPostagem from "../cardpostagem/Cardpostagem.tsx";
 
 function ListaPostagens() {
     useNavigate();
