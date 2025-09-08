@@ -15,10 +15,10 @@ function Home() {
                 >
                     <div className="flex flex-col gap-4 md:items-start items-center">
                         <h2 className="text-5xl font-bold text-center md:text-left">
-                            Seja Bem Vinde!
+                            Deixe sua marca no mundo!
                         </h2>
                         <p className="text-xl text-center md:text-left">
-                            Expresse aqui seus pensamentos e opiniões
+                            Crie, compartilhe e inspire. O palco é todo seu!
                         </p>
 
                         <div className="flex md:justify-start justify-center">

@@ -4,6 +4,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import {ClipLoader} from "react-spinners";
 import {AuthContext} from "../../../contexts/AuthContext.tsx";
 import type Tema from "../../../models/Tema.ts";
+import {ToastAlerta} from "../../../utils/ToastAlerta.ts";
 
 
 function DeletarTema() {
@@ -54,13 +55,13 @@ function DeletarTema() {
                 }
             })
 
-            alert('Tema apagado com sucesso')
+            ToastAlerta('Tema apagado com sucesso', 'sucesso')
             retornar()
         } catch (error: any) {
             if (error.toString().includes('401')) {
                 handleLogout()
             } else {
-                alert('Erro ao deletar o tema.')
+                ToastAlerta('Erro ao deletar o tema.', 'erro')
             }
         }
 

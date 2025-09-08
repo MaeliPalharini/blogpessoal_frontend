@@ -36,7 +36,6 @@ function FormPostagem() {
                 headers: { Authorization: authHeader },
             });
         } catch (e: any) {
-            // fallback para APIs que expõem no singular
             const status = e?.response?.status || 0;
             if (status === 404) {
                 await buscar("/tema", setTemas, {
@@ -114,43 +113,50 @@ function FormPostagem() {
 
     return (
         <div className="container flex flex-col mx-auto items-center">
-            <h1 className="text-4xl text-center my-8">
+            <h1 className="text-5xl text-center my-12 text-[#256777] font-bold">
                 {id !== undefined ? "Editar Postagem" : "Cadastrar Postagem"}
             </h1>
 
-            <form className="flex flex-col w-1/2 gap-4" onSubmit={gerarNovaPostagem}>
+            <form
+                className="flex flex-col w-full max-w-lg gap-6 bg-white p-8 rounded-2xl shadow-md border border-yellow-400"
+                onSubmit={gerarNovaPostagem}
+            >
                 <div className="flex flex-col gap-2">
-                    <label htmlFor="titulo">Título da Postagem</label>
+                    <label htmlFor="titulo" className="text-[#256777] font-medium">
+                        Título da Postagem
+                    </label>
                     <input
                         type="text"
                         placeholder="Título"
                         name="titulo"
                         required
-                        className="border-2 border-slate-700 rounded p-2"
+                        className="border-1 border-yellow-400 rounded p-2 focus:outline-none focus:ring-2 focus:ring-[#256777]"
                         value={postagem.titulo ?? ""}
                         onChange={atualizarEstado}
                     />
                 </div>
 
                 <div className="flex flex-col gap-2">
-                    <label htmlFor="texto">Texto da Postagem</label>
+                    <label htmlFor="texto" className="text-[#256777] font-medium">
+                        Texto da Postagem
+                    </label>
                     <input
                         type="text"
                         placeholder="Texto"
                         name="texto"
                         required
-                        className="border-2 border-slate-700 rounded p-2"
+                        className="border-1 border-yellow-400 rounded p-2 focus:outline-none focus:ring-2 focus:ring-[#256777]"
                         value={postagem.texto ?? ""}
                         onChange={atualizarEstado}
                     />
                 </div>
 
                 <div className="flex flex-col gap-2">
-                    <p>Tema da Postagem</p>
+                    <p className="text-[#256777] font-medium">Tema da Postagem</p>
                     <select
                         name="tema"
                         id="tema"
-                        className="border p-2 border-slate-800 rounded"
+                        className="border-1 border-yellow-400 rounded p-2 focus:outline-none focus:ring-2 focus:ring-[#256777]"
                         value={tema.id || ""}
                         onChange={(e) => {
                             const idSelecionado = Number(e.target.value);
@@ -171,10 +177,14 @@ function FormPostagem() {
 
                 <button
                     type="submit"
-                    className="rounded disabled:bg-slate-200 bg-indigo-400 hover:bg-indigo-800 text-white font-bold w-1/2 mx-auto py-2 flex justify-center"
+                    className="rounded bg-yellow-400 hover:bg-[#256777] text-white font-bold w-1/2 mx-auto py-2 flex justify-center transition-colors"
                     disabled={carregandoTema}
                 >
-                    {isLoading ? <ClipLoader color="#ffffff" size={24} /> : <span>{id === undefined ? "Cadastrar" : "Atualizar"}</span>}
+                    {isLoading ? (
+                        <ClipLoader color="#ffffff" size={24} />
+                    ) : (
+                        <span>{id === undefined ? "Cadastrar" : "Atualizar"}</span>
+                    )}
                 </button>
             </form>
         </div>

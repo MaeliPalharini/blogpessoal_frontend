@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 import type Postagem from '../../models/Postagem'
+import fotoPerfil from '../../assets/avatar.png';
+
 
 interface CardPostagensProps {
     postagem: Postagem
@@ -13,11 +15,11 @@ function CardPostagem({ postagem }: CardPostagensProps) {
                  shadow-sm hover:shadow transition-shadow"
         >
             <div>
-                <div className="flex w-full bg-[#256777] py-3 px-4 items-center gap-3">
+                <div className="flex w-full bg-[#256777] py-4 px-4 items-center gap-4">
                     <img
-                        src={postagem.usuario?.foto}
+                        src={postagem.usuario?.foto || fotoPerfil}
+                        alt={postagem.usuario?.nome || 'Avatar padrão'}
                         className="h-12 w-12 rounded-full object-cover ring-2 ring-white/40"
-                        alt={postagem.usuario?.nome}
                     />
                     <h3 className="text-white text-lg font-semibold uppercase tracking-wide">
                         {postagem.usuario?.nome}

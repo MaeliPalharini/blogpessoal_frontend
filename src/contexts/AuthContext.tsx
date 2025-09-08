@@ -2,7 +2,7 @@ import { createContext, type ReactNode, useState } from "react";
 import type UsuarioLogin from "../models/UsuarioLogin";
 import { login } from "../services/Service";
 import { ToastAlerta } from "../utils/ToastAlerta";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 interface AuthContextProps {
     usuario: UsuarioLogin;
@@ -18,7 +18,7 @@ interface AuthProviderProps {
 export const AuthContext = createContext<AuthContextProps>({} as AuthContextProps);
 
 export function AuthProvider({ children }: AuthProviderProps) {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const [usuario, setUsuario] = useState<UsuarioLogin>({
         id: 0,
         nome: "",
@@ -50,8 +50,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
             foto: "",
             token: "",
         });
-        ToastAlerta("O usuário foi desconectado com sucesso!", "info");
-        navigate("/login", { replace: true, state: { loggedOut: true } });
+        localStorage.removeItem("usuario");
     }
 
     return (
